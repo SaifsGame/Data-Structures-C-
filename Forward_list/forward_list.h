@@ -5,6 +5,9 @@ struct node
 {
     T Val;
     node<T>* link;
+	node(){
+		Val = T();
+		link = nullptr;
 };
 
 
@@ -14,11 +17,22 @@ private:
     node<T>* head;
     int n;
 public:
+// constructor
     forward_list(){
         this->head = new node<T>;
         this->head->link = nullptr;
         this->n = 0;
     }
+// declared destructor
+~forward_list(){
+	node<T>* temp;
+	temp = head->link;
+	while(head->link != nullptr){
+		head->link = temp->link;
+		delete temp;
+	}
+	delete head;
+}
 
     void push_front(const T &value){
     node<T>* temp = new node<T>;
@@ -33,7 +47,8 @@ public:
             throw("List is Empty!");
             return;
         }
-        node<T>* temp = new node<T>;
+		// jani pop kar rahe ho tou new node ks leye bna re ho ?? new nahe aye ga yaha 
+        node<T>* temp = node<T>;
         temp = head->link;
         head->link = temp->link;
         delete temp;
