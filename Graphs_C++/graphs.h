@@ -90,4 +90,44 @@ public:
 
     }
 
+
+    bool depth_first_search(const V &s , const V &d){
+    int s_i = get_index(s);
+    int d_i = get_index(d);
+    bool *marked = new bool[n];
+    for(int i=0 ; i<n;i++){
+        marked[i] = false;
+    }
+    std::stack<int> stk;
+    stk.push(s_i)    
+    while(!stk.empty()){
+
+    V current = stk.top();
+
+    stk.pop();   
+
+        if(current == d_i){
+        delete[] marked;
+            return true;
+        }
+
+    if(!marked[current]){
+        marked[current] = true;
+
+    typename std::forward_list<std::pair<int ,E>>::iterator it;
+    it = this->edge[v_i].begin();   
+    while(it != this->edge[v_i].end()){
+    
+        int neighbor_i = it->first;
+     if (!marked[neighbor_i]){
+        stk.push(neighbor_i);
+     }
+     ++it;
+    }
+    
+    }
+    return false;
+    }
+    }
+
 };
